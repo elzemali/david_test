@@ -6,14 +6,14 @@
 package davidtest.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.sun.xml.internal.ws.developer.Serialization;
 import davidtest.model.models.Children;
 import davidtest.util.ChildrenSerializer;
 import davidtest.util.LocalDateTimeAttributeConverter;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -25,7 +25,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,7 +34,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "person")
-public class Person extends BasePerson {
+public class Person extends BasePerson implements Serializable {
 
     @Column(name = "EYE_COLOR")
     private String eyeColor;
@@ -63,14 +63,13 @@ public class Person extends BasePerson {
     @Column(name = "REGISTERED")
     private LocalDate registered;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "person_children",
             joinColumns = @JoinColumn(name = "ID_PERSON"),
             inverseJoinColumns = @JoinColumn(name = "ID_CHILD")
     )
     
-    @JsonSerialize(using =ChildrenSerializer.class)
     private Children children;
 
     public Person() {
@@ -115,9 +114,9 @@ public class Person extends BasePerson {
     public LocalDate getRegistered() {
         return registered;
     }
-
+    
     public Children getChildren() {
-        return new Children((List<Child>)children);
+        return new Children(children.getChildren());
     }
 
     public void setEyeColor(String eyeColor) {
@@ -160,8 +159,8 @@ public class Person extends BasePerson {
         this.registered = registered;
     }
 
-    public void setChildren(Children children) {
-        this.children = children;
+    public void setChildren(List<Child> children) {
+        this.children =  new Children(children);
     }
    
     @Override

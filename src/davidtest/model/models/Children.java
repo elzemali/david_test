@@ -5,7 +5,9 @@
  */
 package davidtest.model.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import davidtest.model.Child;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +15,22 @@ import java.util.List;
  * @author lenovo
  */
 public class Children extends BasePersons<Child> {
-
-    public Children(List<Child> baseList) {
-        super(baseList);
+    
+    private List<Child> children;
+    
+    public Children() {
     }
+    
+    public Children(List<Child> children) {
+        super(children);
+        this.children = new ArrayList<>(children);
+    }
+
+    public List<Child> getChildren() {
+        return children;
+    }
+    
+    
+    
     
 }
