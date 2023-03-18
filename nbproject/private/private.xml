@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/util/LocalDateTimeAttributeConverter.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/ressource/base.sql</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/PersonChildren.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/BasePerson.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/PersonChildrenPk.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/models/Persons.java</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/PersonGender.java</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/util/BasePersonExtractor.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/models/Children.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/models/BasePersons.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/Child.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/model/Person.java</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/util/DeepIterator.java</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/jpaController/PersonJpaController.java</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/DavidTest/src/davidtest/util/ConvertJson.java</file>
         </group>
     </open-files>
 </project-private>

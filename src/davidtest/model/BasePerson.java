@@ -52,11 +52,11 @@ public class BasePerson {
     
     @Override
     public int hashCode() {
-        final int prime = 17;
-        int result = 1;
+        int hash = 0;
         
-        result = prime * result + ((this.id == null)? 0 : this.id.hashCode());
-        return result;
+        hash += (id != null ? id.hashCode() : 0);
+   
+        return hash;
     }
     
     @Override

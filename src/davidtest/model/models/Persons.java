@@ -11,11 +11,9 @@ import davidtest.model.Person;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
- 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 /**
  *
@@ -23,37 +21,34 @@ import java.util.stream.Collectors;
  */
 public class Persons extends BasePersons<Person> {
     @JsonProperty("persons")
-   public List<Person> personList;
-    
-    //// for list implementation
-//    public Persons(@JsonProperty("persons")List<Person> personList) {
-//        super(personList);
-//        this.personList= new ArrayList(personList);
-//        
-//    }
-    public Persons(@JsonProperty("persons")List<Person> personList) {
-        super(personList.stream().collect(Collectors.toMap(x->x.getId(), x->x)));
-        this.personList= new ArrayList(personList);
-        
+    private List<Person> persons;
+
+    public Persons() {
     }
     
+    public Persons(@JsonProperty("persons")List<Person> persons) {
+        super(persons);
+        this.persons= new ArrayList(persons);    
+    }
+   
     /**
-     *  sort element by gender and DateOfBirth
+     *  sort element by gender and then DateOfBirth
      */
-    public void sortByGenderThenDateOfBirth (){
-        // 1- creer un comparator avec deux criteres gendre premierement puis DateOfBirth
-        Comparator<Person> personComparator = Comparator.comparing(Person::getGender).thenComparing(Person::getDateOfBirth);
+    public void sortByGenderThenDateOfBirth() {
+        //1- creer un comparator avec deux criteres gendre premierement puis DateOfBirth
+        Comparator<Person> personComparator = Comparator.comparing(Person::getGender)
+                .thenComparing(Person::getDateOfBirth);
+        
         //2- utiliser la methode sort de collections
-        Collections.sort(personList, personComparator); 
-        //// to show result
-      //  personList.forEach(x-> System.out.println(x.getGender()+" "+ x.getDateOfBirth()));
+        Collections.sort(persons, personComparator);     
     }
     
-    public Map<String, Long> getCountByCountry(){
-        // grouper la liste par country puis calculer le nombre d'occurence ,
-       Map<String, Long> collect = personList.stream().collect(Collectors.groupingBy(Person::getCountry,Collectors.counting()));
-     return collect;
-    
+    public Map<String, Long> getCountByCountry() {
+       // grouper la liste par country puis calculer le nombre d'occurence ,
+        Map<String, Long> collect = persons.stream()
+                .collect(Collectors.groupingBy(Person::getCountry,Collectors.counting()));
+        
+        return collect;  
     }
     
 }

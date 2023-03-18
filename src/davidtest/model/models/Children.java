@@ -7,7 +7,6 @@ package davidtest.model.models;
 
 import davidtest.model.Child;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 public class Children extends BasePersons<Child> {
 
     public Children(List<Child> baseList) {
-        super(baseList.stream().collect(Collectors.toMap(x->x.getId(), x->x)));
+        super(baseList);
     }
     
 }

@@ -26,7 +26,6 @@ public class LocalDateAttributeConverter implements AttributeConverter<LocalDate
             ZoneId defaultZoneId = ZoneId.systemDefault();
             return Date.from(x.atStartOfDay(defaultZoneId).toInstant());
         }
-
     }
 
     @Override

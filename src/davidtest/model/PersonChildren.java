@@ -8,10 +8,7 @@ package davidtest.model;
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,32 +16,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "person_children")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PersonChildren.findAll", query = "SELECT p FROM PersonChildren p"),
-    @NamedQuery(name = "PersonChildren.findByIdPerson", query = "SELECT p FROM PersonChildren p WHERE p.personChildrenPK.idPerson = :idPerson"),
-    @NamedQuery(name = "PersonChildren.findByIdChild", query = "SELECT p FROM PersonChildren p WHERE p.personChildrenPK.idChild = :idChild")})
 public class PersonChildren implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected PersonChildrenPK personChildrenPK;
+    protected PersonChildrenPk personChildrenPK;
 
     public PersonChildren() {
     }
 
-    public PersonChildren(PersonChildrenPK personChildrenPK) {
+    public PersonChildren(PersonChildrenPk personChildrenPK) {
         this.personChildrenPK = personChildrenPK;
     }
 
     public PersonChildren(String idPerson, String idChild) {
-        this.personChildrenPK = new PersonChildrenPK(idPerson, idChild);
+        this.personChildrenPK = new PersonChildrenPk(idPerson, idChild);
     }
 
-    public PersonChildrenPK getPersonChildrenPK() {
+    public PersonChildrenPk getPersonChildrenPK() {
         return personChildrenPK;
     }
 
-    public void setPersonChildrenPK(PersonChildrenPK personChildrenPK) {
+    public void setPersonChildrenPK(PersonChildrenPk personChildrenPK) {
         this.personChildrenPK = personChildrenPK;
     }
 
