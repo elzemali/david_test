@@ -6,10 +6,15 @@
 package davidtest.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sun.xml.internal.ws.developer.Serialization;
 import davidtest.model.models.Children;
+import davidtest.util.ChildrenSerializer;
 import davidtest.util.LocalDateTimeAttributeConverter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,7 +48,7 @@ public class Person extends BasePerson {
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PHONE")
-    private long phone;
+    private Long phone;
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "COUNTRY")
@@ -64,6 +69,8 @@ public class Person extends BasePerson {
             joinColumns = @JoinColumn(name = "ID_PERSON"),
             inverseJoinColumns = @JoinColumn(name = "ID_CHILD")
     )
+    
+    @JsonSerialize(using =ChildrenSerializer.class)
     private Children children;
 
     public Person() {
@@ -85,7 +92,7 @@ public class Person extends BasePerson {
         return email;
     }
 
-    public long getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
@@ -110,9 +117,53 @@ public class Person extends BasePerson {
     }
 
     public Children getChildren() {
-        return children;
+        return new Children((List<Child>)children);
     }
 
+    public void setEyeColor(String eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    public void setGender(PersonGender gender) {
+        this.gender = gender;
+    }
+
+    public void setDateOfBirth(LocalDateTime dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public void setRegistered(LocalDate registered) {
+        this.registered = registered;
+    }
+
+    public void setChildren(Children children) {
+        this.children = children;
+    }
+   
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
