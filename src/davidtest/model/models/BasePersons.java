@@ -46,7 +46,7 @@ public class BasePersons<T extends BasePerson> implements Iterable<T> {
     
     //First idea: convert Map to List<T> of values
     private List<T> getAll() { 
-        return (List<T>) basePersons.values();           
+        return (List<T>) basePersons.values().stream().collect(Collectors.toList());           
     }
 
     public T get(String id) {  
