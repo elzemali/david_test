@@ -38,7 +38,7 @@ public class Settings {
         return DEFAULT_SCHEMA;
     }
     
-    
+    //TODO ecrire la partie static en haut de comme construteur
     static {
         DISTINATION_MYSQL = "localhost";
         USERNAME = "root";

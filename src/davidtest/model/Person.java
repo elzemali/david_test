@@ -32,10 +32,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "person") 
-public class Person extends BasePerson implements Serializable{
-
-     
-
+public class Person extends BasePerson {
     @Column(name = "EYE_COLOR")
     private final String eyeColor;
     
@@ -45,6 +42,7 @@ public class Person extends BasePerson implements Serializable{
      
     @Column(name = "DATE_OF_BIRTH" )
     @Convert(converter = LocalDateTimeAttributeConverter.class)
+    //faire attention à l'ordre d'apparaision
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "[dd/MM/yyyy][dd-MM-yyyy][yyyy-MM-dd'T'HH:mm:ss]")  
    
     private final LocalDateTime dateOfBirth;
@@ -84,6 +82,8 @@ public class Person extends BasePerson implements Serializable{
         )
     private final List<Child> children;
 
+    
+    //A enlever
     public Person() {
         super();
         this.eyeColor = "";
@@ -111,6 +111,8 @@ public class Person extends BasePerson implements Serializable{
         this.about = about;
         this.isActive = isActive;
         this.registered = registered;
+        //Constructeur vraiment long
+        //TODO ça peut etre nulle
         this.children = children;
     }
    

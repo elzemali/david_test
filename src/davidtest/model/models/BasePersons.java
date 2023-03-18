@@ -81,9 +81,11 @@ public class BasePersons<T extends BasePerson> implements Iterable<T> {
 //        return (T t) -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
 //    }
 //    
+    //TODO Enlever le mot Map de basePerson
       private final Map<String,T> basePersonMap;
     
     public BasePersons() {
+        //TODO justifier pourquoi concurrentHashMap
         this.basePersonMap = new ConcurrentHashMap<>();
    
     }
@@ -93,6 +95,7 @@ public class BasePersons<T extends BasePerson> implements Iterable<T> {
         this.basePersonMap =  new ConcurrentHashMap<>(baseList);
     }
 
+   
     public void add(T obj) {
         if (obj != null) {
             basePersonMap.put(obj.getId(), obj);
@@ -103,7 +106,7 @@ public class BasePersons<T extends BasePerson> implements Iterable<T> {
     public T get(String id) {
         return basePersonMap.get(id);
     }
-
+ //l'histoire de getALL
     public T get(String firstName, String lastName) {
         
         return basePersonMap.entrySet().stream()

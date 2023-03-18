@@ -10,8 +10,15 @@ package davidtest.model;
  * @author lenovo
  */
 public enum PersonGender {
-    male,
-    female,
+    //Utiliser Convention de nommage de ENUM
+    MALE{
+
+        @Override
+        public String toString() {
+            return "male";
+        }
+    },
+    FEMALE,
     other
     
 }

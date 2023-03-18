@@ -5,37 +5,38 @@
  */
 package davidtest.model;
 
-import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lenovo
  */
- @Entity
+@Entity
 @Table(name = "child")
-@XmlRootElement
-public class Child extends BasePerson implements Serializable {
-
-  
-
-    
-    @Column(name = "DUMMY")
-    private String dummy;
+public class Child extends BasePerson {
 
     public Child() {
     }
-
-    public Child(String _id, String firstName, String lastName) {
-        super(_id, firstName, lastName);
-    }
-    
-      @Override
+    /**
+     *  toString personnalisé de child avec Child{
+     *  ... au lieu de BasePerson{...
+     * @return 
+     */
+    @Override
     public String toString() {
-        return  super.toString() + "Child{" + "dummy=" + dummy + '}';
+        StringBuilder sb = new StringBuilder();
+        //TODO verifier si il est mieux de faire toString directement
+        sb.append("Child{");
+        sb.append("id=");
+        sb.append(getId());
+        sb.append(", firstName=");
+        sb.append(getFirstName());
+        sb.append(", lastName=");
+        sb.append(getLastName());
+        sb.append("}"); 
+      
+        return  sb.toString();
     }
      
 

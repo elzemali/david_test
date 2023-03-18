@@ -14,6 +14,8 @@ import java.util.List;
  * @author lenovo
  * @param <T>
  */
+//ToDO enlenver deepIterator 
+// Les algorithme de parcours 
 public class DeepIterator<T extends BasePerson> implements Iterator<T > {
 
     private final List<T> mList;

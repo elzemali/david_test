@@ -22,6 +22,7 @@ public class MysqlConnection {
     private MysqlConnection() {
 
         try {
+            //TODO verifier nouvelle pour driver jc
             Class.forName("com.mysql.jdbc.Driver");
             final String url = "jdbc:mysql://" + Settings.getDISTINATION_MYSQL() + ":3306/information_schema";
             connection = (Connection) DriverManager.getConnection(url, Settings.getUSERNAME(), Settings.getPASSWORD());

@@ -7,8 +7,6 @@ package davidtest.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import davidtest.util.BasePersonExtractor;
-import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,36 +23,23 @@ import org.eclipse.persistence.annotations.ClassExtractor;
 @Table(name = "base_person") 
 @Inheritance(strategy = InheritanceType.JOINED) 
 @ClassExtractor(BasePersonExtractor.class)
-public class BasePerson implements Serializable {
-
-   
-
+//pourquoi sérializable
+//Rendre la classe Abstraite
+public class BasePerson {
     @JsonProperty("_id")
     @Id
     @Column(name = "ID")
-    protected   String _id;
-   
+    private   String id;
     @Column(name = "FIRST_NAME")
-    protected   String firstName;
-    
+    private   String firstName;
     @Column(name = "LAST_NAME")
-    protected   String lastName;
+    private   String lastName;
 
     public BasePerson() {
-        //  this._id = UUID.randomUUID();
-        this._id = "";
-        this.firstName = "";
-        this.lastName = "";
-    }
-
-    public BasePerson(String _id, String firstName, String lastName) {
-        this._id = _id;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public String getId() {
-        return _id;
+        return id;
     }
 
     public String getFirstName() {
@@ -64,14 +49,16 @@ public class BasePerson implements Serializable {
     public String getLastName() {
         return lastName;
     }
-
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this._id);
-        return hash;
+        final int prime = 17;
+        int result = 1;
+        
+        result = prime * result + ((this.id == null)? 0 : this.id.hashCode());
+        return result;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -81,15 +68,23 @@ public class BasePerson implements Serializable {
             return false;
         }
         final BasePerson other = (BasePerson) obj;
-        if (!Objects.equals(this._id, other._id)) {
-            return false;
-        }
-        return true;
+        return this.id.equals(other.id);           // or using Objects.equals(this.id, other.id);
     }
     
      @Override
     public String toString() {
-        return "BasePerson{" + "_id=" + _id + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("BasePerson{");
+        sb.append("id=");
+        sb.append(id);
+        sb.append(", firstName=");
+        sb.append(firstName);
+        sb.append(", lastName=");
+        sb.append(lastName);
+        sb.append("}"); 
+        
+        return sb.toString();
     }
 
 }

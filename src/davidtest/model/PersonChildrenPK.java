@@ -14,6 +14,7 @@ import javax.persistence.Embeddable;
  *
  * @author lenovo
  */
+//TODO nomination Pk au lieu PK
 @Embeddable
 public class PersonChildrenPK implements Serializable {
     @Basic(optional = false)
@@ -48,6 +49,7 @@ public class PersonChildrenPK implements Serializable {
     }
 
     @Override
+    //utiliser la meme loguique pour hashCode
     public int hashCode() {
         int hash = 0;
         hash += (idPerson != null ? idPerson.hashCode() : 0);
@@ -56,6 +58,7 @@ public class PersonChildrenPK implements Serializable {
     }
 
     @Override
+    //utiliser la meme loguique pour equals
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof PersonChildrenPK)) {

@@ -25,7 +25,9 @@ public class PersonJpaController {
     public EntityManager getEntityManager() {
         return this.emf.createEntityManager();
     }
-
+    // TODO Enlever transaction, trouver une solution pour creer child 
+    // creer Child avant, Creer Person, creer la relation entre les deux
+    
     public String create(final Person person) {
         EntityManager em = null;
         try {
