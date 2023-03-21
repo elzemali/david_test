@@ -7,6 +7,7 @@ package davidtest.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import davidtest.util.BasePersonExtractor;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,9 +24,7 @@ import org.eclipse.persistence.annotations.ClassExtractor;
 @Table(name = "base_person") 
 @Inheritance(strategy = InheritanceType.JOINED) 
 @ClassExtractor(BasePersonExtractor.class)
-//pourquoi sérializable
-//Rendre la classe Abstraite
-public class BasePerson {
+public abstract class BasePerson implements Serializable{
     @JsonProperty("_id")
     @Id
     @Column(name = "ID")

@@ -5,6 +5,8 @@
  */
 package davidtest.model.models;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import davidtest.model.BasePerson;
 import davidtest.util.BaseParentIterator;
 import java.util.ArrayList;
@@ -81,6 +83,11 @@ public class BasePersons<T extends BasePerson> implements Iterable<T> {
     public Iterator<T> iterator() {      
         return new BaseParentIterator<>(getAll());
     }
+    
+//    @JsonProperty("persons")
+//    public List<T> getBasePersons() {
+//        return new ArrayList(getAll());
+//    } 
    
     /* second idea: use interface  */
     

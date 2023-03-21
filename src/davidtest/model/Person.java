@@ -6,14 +6,18 @@
 package davidtest.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import davidtest.model.models.Children;
 import davidtest.util.ChildrenSerializer;
+import davidtest.util.CustomLocalDateDeserializer;
 import davidtest.util.LocalDateTimeAttributeConverter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -27,6 +31,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -59,18 +66,22 @@ public class Person extends BasePerson implements Serializable {
     @Basic(optional = false)
     @Column(name = "FL_ACTIVE")
     private boolean isActive;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "[dd/MM/yy][yyyy-MM-dd][yyyy-MM-d]")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "[dd/MM/yy][yyyy-MM-dd][yyyy-MM-d]")
+    @JsonDeserialize(using = CustomLocalDateDeserializer.class) 
     @Column(name = "REGISTERED")
+    @Temporal(TemporalType.DATE)
     private LocalDate registered;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "person_children",
             joinColumns = @JoinColumn(name = "ID_PERSON"),
             inverseJoinColumns = @JoinColumn(name = "ID_CHILD")
     )
-    
-    private Children children;
+    //@Transient
+    private List<Child> children;
+
+   // private Children children;
 
     public Person() {
     }
@@ -81,6 +92,10 @@ public class Person extends BasePerson implements Serializable {
 
     public PersonGender getGender() {
         return gender;
+    }
+    
+    public String getGenderName() {
+        return gender.getName();
     }
 
     public LocalDateTime getDateOfBirth() {
@@ -115,8 +130,8 @@ public class Person extends BasePerson implements Serializable {
         return registered;
     }
     
-    public Children getChildren() {
-        return new Children(children.getChildren());
+    public List<Child> getChildren() {
+        return children!=null ? Collections.unmodifiableList(children) : null;
     }
 
     public void setEyeColor(String eyeColor) {
@@ -160,7 +175,7 @@ public class Person extends BasePerson implements Serializable {
     }
 
     public void setChildren(List<Child> children) {
-        this.children =  new Children(children);
+        this.children =  new ArrayList<>(children);
     }
    
     @Override
@@ -177,7 +192,7 @@ public class Person extends BasePerson implements Serializable {
         sb.append(", eyeColor=");
         sb.append(eyeColor);
         sb.append(", gender=");
-        sb.append(gender);
+        sb.append(gender.getName());
         sb.append(", dateOfBirth=");
         sb.append(dateOfBirth);
         sb.append(", email=");

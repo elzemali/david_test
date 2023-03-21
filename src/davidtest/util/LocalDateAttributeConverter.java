@@ -5,6 +5,7 @@
  */
 package davidtest.util;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -30,6 +31,8 @@ public class LocalDateAttributeConverter implements AttributeConverter<LocalDate
 
     @Override
     public LocalDate convertToEntityAttribute(Date y) {
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("DD/MM/YY");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("YYYY-MM-DD");
         return y == null ? null : y.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 

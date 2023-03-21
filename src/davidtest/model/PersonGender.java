@@ -14,28 +14,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public enum PersonGender {
     @JsonProperty("male")
-    MALE {
-        
-        @Override
-        public String toString() {
-            return "male";
-        }
-        
-    },
+    MALE("male"),  
     @JsonProperty("female")
-    FEMALE {
-        
-        @Override
-        public String toString() {
-            return "female";
-        }
-    },
+    FEMALE("female"),
     @JsonEnumDefaultValue
-    OTHER {
+    OTHER("other");
     
-        @Override
-        public String toString() {
-            return "other";
-        }
+    private final String name;
+    
+    private PersonGender(String name) {
+        this.name= name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
